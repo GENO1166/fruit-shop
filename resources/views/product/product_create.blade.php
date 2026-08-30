@@ -191,6 +191,16 @@
                             <span class="error-text">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    <div class="form-group">
+                        <label for="quantity">จำนวนสินค้า <span style="color: red;">*</span></label>
+                        <input type="number" name="quantity" id="quantity"
+                            class="form-control @error('quantity') is-invalid @enderror" placeholder="เช่น 100"
+                            value="{{ old('quantity') }}" required>
+                        @error('quantity')
+                            <span class="error-text">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="form-group">

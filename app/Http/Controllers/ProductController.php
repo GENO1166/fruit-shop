@@ -45,6 +45,7 @@ class ProductController extends Controller
             'product_name'  => 'required|string|max:255',
             'description'   => 'required|string',
             'price'         => 'required|numeric|min:0',
+            'quantity'      => 'required|integer|min:0',
             'status'        => 'required|in:active,inactive,out_of_stock',
             'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -60,6 +61,7 @@ class ProductController extends Controller
             'product_name' => $request->product_name,
             'description'  => $request->description,
             'price'        => $request->price,
+            'quantity'     => $request->quantity,
             'image'        => $imageName,
             'status'       => $request->status,
             'created_at'   => now(),
@@ -130,8 +132,8 @@ class ProductController extends Controller
         if ($package) {
             $fileName = $package->image;
 
-            if ($fileName && Storage::disk('public')->exists('packages/' . $fileName)) {
-                Storage::disk('public')->delete('packages/' . $fileName);
+            if ($fileName && Storage::disk('public')->exists('product_images/' . $fileName)) {
+                Storage::disk('public')->delete('product_images/' . $fileName);
             }
 
         }
