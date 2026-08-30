@@ -152,17 +152,21 @@
                         <input type="number" name="price" step="0.01" class="form-control"
                             value="{{ $product->price }}" required>
                     </div>
-
                     <div class="form-group">
-                        <label>สถานะ</label>
-                        <select name="status" class="form-control">
-                            <option value="active" {{ $product->status == 'active' ? 'selected' : '' }}>พร้อมขาย</option>
-                            <option value="inactive" {{ $product->status == 'inactive' ? 'selected' : '' }}>ปิดการขาย
-                            </option>
-                            <option value="out_of_stock" {{ $product->status == 'out_of_stock' ? 'selected' : '' }}>
-                                สินค้าหมด</option>
-                        </select>
+                        <label>จำนวนสินค้า</label>
+                        <input type="number" name="quantity" class="form-control" value="{{ $product->quantity }}"
+                            required>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label>สถานะ</label>
+                    <select name="status" class="form-control">
+                        <option value="active" {{ $product->status == 'active' ? 'selected' : '' }}>พร้อมขาย</option>
+                        <option value="inactive" {{ $product->status == 'inactive' ? 'selected' : '' }}>ปิดการขาย</option>
+                        <option value="out_of_stock" {{ $product->status == 'out_of_stock' ? 'selected' : '' }}>สินค้าหมด
+                        </option>
+                    </select>
                 </div>
 
                 <div class="form-group">

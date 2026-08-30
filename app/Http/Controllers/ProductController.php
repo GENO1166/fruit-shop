@@ -13,9 +13,9 @@ class ProductController extends Controller
     {
         $products = DB::table('products')->get();
 
-        // $userid = Auth::id();
-        // $user_role = DB::table('users')->where('id', $userid)->select('role')->first();
-        $user_role = 'superadmin';
+        $userid = Auth::id();
+        $user_role = DB::table('users')->where('id', $userid)->select('role')->first();
+        // $user_role = 'superadmin';
 
         if($user_role == 'user')
         {
@@ -27,10 +27,10 @@ class ProductController extends Controller
 
     public function create_product()
     {
-        // $userid = Auth::id();
+        $userid = Auth::id();
         
-        // $user_role = DB::table('users')->where('id', $userid)->select('role')->first();
-        $user_role = 'superadmin';
+        $user_role = DB::table('users')->where('id', $userid)->select('role')->first();
+        // $user_role = 'superadmin';
 
         if ($user_role == 'user') {
             return redirect()->back()->with('error', 'คุณไม่มีสิทธิ์เข้าถึงหน้านี้');
@@ -82,6 +82,7 @@ class ProductController extends Controller
             'product_name'  => 'required|string|max:255',
             'description'   => 'required|string',
             'price'         => 'required|numeric|min:0',
+            'quantity'      => 'required|integer|min:0',
             'status'        => 'required|in:active,inactive,out_of_stock',
             'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -90,6 +91,7 @@ class ProductController extends Controller
             'product_name' => $request->product_name,
             'description'  => $request->description,
             'price'        => $request->price,
+            'quantity'     => $request->quantity,
             'status'       => $request->status,
             'updated_at'   => now(),
         ];
